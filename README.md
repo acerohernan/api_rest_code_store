@@ -6,6 +6,12 @@
 3. Login
 4. Access token
 5. Refresh tokens
+6. Create Product
+7. Find Product
+8. Find All Products
+9. Update Product
+10. Delete Product
+
 
 ## What technology are we using?
 - [TypeScript] - Static tye checking 

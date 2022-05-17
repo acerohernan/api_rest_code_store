@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from "express";
 import {get} from "lodash";
-import { deleteSessionByQuery, findSessionById } from "../service/session.service";
+import { deleteSessionByQuery, findSessionById, findSessionByQuery } from "../service/session.service";
 import { findUserById } from "../service/user.service";
 import { signJwt, verifyJwt } from "../utils/jwt";
 import config from "config"; 
@@ -19,6 +19,16 @@ export async function deserializeUser(req: Request, res: Response, next: NextFun
         const {decoded, expired} = verifyJwt(accessToken);
 
         if(decoded){
+
+            const session = await findSessionByQuery({user: get(decoded, "_id")});
+            
+            if(get(decoded, "session") !== String(session?._id)){
+                return res.status(400).json({
+                    message: "Your session has been close. Please login again.",
+                    success: false
+                })
+            };
+
             res.locals.user = decoded;
             return next();
         };

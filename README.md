@@ -51,7 +51,6 @@ Hernan Store is an ecommerce built on React and Typescript. The Backend part was
 
 * <p>ReactJS</p>
 * <p>Typescript</p>
-* <p>Expo</p>
 * <p>Redux</p>
 * <p>NodeJS</p>
 * <p>ExpressJS</p>
